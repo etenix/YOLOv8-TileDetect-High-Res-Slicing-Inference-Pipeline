@@ -1,6 +1,9 @@
-path: C:/Users/etenix/Desktop/my_dataset  # 数据集根目录
-train: images/train  # 训练集图片路径
-val: images/val      # 验证集图片路径
+# プロジェクトのルートディレクトリを絶対パスまたはスクリプトからの相対パスで指定
+path: ../my_dataset
+train: images/train  # images/train フォルダ
+val: images/val      # images/val フォルダ
 
+# クラス数とクラス名
+nc: 1
 names:
-  0: cell  # 类别名称
+  0: tile  # Tile
