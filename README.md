@@ -36,6 +36,7 @@ python scripts/train.py
 Step 4: 大画像の自動検知(Inference)
 
 学習済みモデル（best.pt）を使用し、大画像全体をスキャンしてタイルの総数を算出します。
+
 python scripts/detect_full.py
 
 4. 環境構築
