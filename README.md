@@ -8,27 +8,30 @@ YOLOv8-TileDetect: High-Res Slicing Inference Pipeline
 2. 解決した技術的課題
 
 解像度の問題: 入力画像をリサイズするとタイルが消失する問題を、タイル状の切片処理（640px）で解決。
-アノテーションの効率化: 数千個のタイルを手動で囲む代わりに、OpenCV を用いた自動プレアノテーション（Auto-labeling）により工数を大幅に削減。
+アノテーションの効率化: 数千個のタイルを手動で囲む代わりに、OpenCVを用いた自動プレアノテーション（Auto-labeling）により工数を大幅に削減。
 重複検知の回避: 重なり（Overlap）部分におけるタイルの二重カウントを、中心点座標判定ロジックにより排除。
 
 3. ワークフローと使用方法
 
-Step 1: 画像の切片化 (Slicing)
+Step 1: 画像の切片化(Slicing)
 
-大画像を学習に適した 640x640 のタイルに分割します。
+大画像を学習に適した640x640のタイルに分割します。
+
 python scripts/slice_image.py
 
-Step 2: 自動プレアノテーション (Auto-labeling)
+Step 2: 自動プレアノテーション(Auto-labeling)
 
-OpenCV の二値化とモルフォロジー演算（腐食・膨張）により、タイルの外形を自動抽出し YOLO 形式の .txt を生成します。
+OpenCVの二値化とモルフォロジー演算（腐食・膨張）により、タイルの外形を自動抽出しYOLO形式の.txtを生成します。
+
 python scripts/auto_label.py
 
-Step 3: モデルの学習 (Training)
+Step 3: モデルの学習(Training)
 
-NVIDIA GPU を活用し、YOLOv8n モデルで転移学習を実施します。
+NVIDIA GPUを活用し、YOLOv8nモデルで転移学習を実施します。
+
 python scripts/train.py
 
-Step 4: 大画像の自動検知 (Inference)
+Step 4: 大画像の自動検知(Inference)
 
 学習済みモデル（best.pt）を使用し、大画像全体をスキャンしてタイルの総数を算出します。
 python scripts/detect_full.py
@@ -36,11 +39,11 @@ python scripts/detect_full.py
 4. 環境構築
 
 Python 3.12+
-PyTorch 2.4+ (CUDA 12.4 対応推奨)
-Ultralytics (YOLOv8)
+PyTorch 2.4+(CUDA 12.4 対応推奨)
+Ultralytics(YOLOv8)
 OpenCV-Python
 
-5. 実績 (Results)
+5. 実績(Results)
 
-推論精度: mAP50 0.944 / mAP50-95 0.939
-処理速度: 1sliceあたり約 1.9ms
+推論精度: mAP50 0.944/mAP50-95 0.939
+処理速度: 1sliceあたり約1.9ms
