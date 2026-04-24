@@ -18,12 +18,12 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Install Dependencies
+      - name: Install AI Libraries
         run: |
           python -m pip install --upgrade pip
-          # 直接在这里安装核心库，避开系统依赖报错
+          # 注意：这里使用的是 headless 版本，它不需要任何系统依赖！
           pip install ultralytics sahi opencv-python-headless numpy
 
-      - name: Run Inference Pipeline
+      - name: Run Inference
         run: |
           python delect_full.py
