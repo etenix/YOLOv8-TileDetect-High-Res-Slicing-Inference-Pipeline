@@ -17,14 +17,17 @@ Step 1: 画像の切片化 (Slicing)
 
 大画像を学習に適した 640x640 のタイルに分割します。
 python scripts/slice_image.py
+
 Step 2: 自動プレアノテーション (Auto-labeling)
 
 OpenCV の二値化とモルフォロジー演算（腐食・膨張）により、タイルの外形を自動抽出し YOLO 形式の .txt を生成します。
 python scripts/auto_label.py
+
 Step 3: モデルの学習 (Training)
 
 NVIDIA GPU を活用し、YOLOv8n モデルで転移学習を実施します。
 python scripts/train.py
+
 Step 4: 大画像の自動検知 (Inference)
 
 学習済みモデル（best.pt）を使用し、大画像全体をスキャンしてタイルの総数を算出します。
